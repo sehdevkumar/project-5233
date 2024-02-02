@@ -1,0 +1,47 @@
+.main-class {
+  cursor: pointer;
+  overflow: hidden;
+  height: max-content;
+}
+
+.cursor {
+  position: fixed;
+  width:200dvw;
+  height: 200dvh;
+  border: 200vh  solid rgb(0, 0, 0);
+  /* Set the border color */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  /* Allow clicks to pass through the cursor */
+  mix-blend-mode: color-burn;
+  /* Optional: Apply a blend mode to the cursor */
+  transition: transform 0.1s ease;
+}
+
+.cursor::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% 50%;
+  position: fixed;
+  background: inherit;
+  border-width: 200px;
+  top: 0;
+  left: 0;
+  border-color: transparent;
+  transform: translate(-50%, -50%);
+  transition: border-color 0.1s ease;
+}
+
+.main-class:hover .cursor {
+  transform: translate(-50%, -50%) scale(1.5);
+  /* Scale the cursor on hover */
+}
+
+.main-class:hover .cursor::after {
+  border-color: white;
+  mix-blend-mode: lighten;
+  /* Change the border color on hover with some opacity */
+}
