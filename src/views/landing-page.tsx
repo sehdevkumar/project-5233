@@ -5,8 +5,7 @@ const LandingPage = () => {
   const httpRquest = useHttpHook()
 
   useEffect(() => {
-    httpRquest.request('GET', 'https://api.publicapis.org/entriess').then((res) => {
-      console.log('I will kill you',res)
+    httpRquest.request('GET', 'https://api.publicapis.org/entries').then((res) => {
     })
 
     return () => {
