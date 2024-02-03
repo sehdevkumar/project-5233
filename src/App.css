@@ -14,9 +14,9 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   /* Allow clicks to pass through the cursor */
-  mix-blend-mode: color-burn;
+  mix-blend-mode:soft-light;
   /* Optional: Apply a blend mode to the cursor */
-  transition: transform 0.1s ease;
+  transition: transform 2s ease;
 }
 
 .cursor::after {
@@ -32,16 +32,16 @@
   left: 0;
   border-color: transparent;
   transform: translate(-50%, -50%);
-  transition: border-color 0.1s ease;
+  transition: border-color 2s ease;
 }
 
 .main-class:hover .cursor {
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(4);
   /* Scale the cursor on hover */
 }
 
 .main-class:hover .cursor::after {
   border-color: white;
-  mix-blend-mode: lighten;
+  mix-blend-mode: hard-light;
   /* Change the border color on hover with some opacity */
 }

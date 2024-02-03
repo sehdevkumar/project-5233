@@ -1,4 +1,19 @@
+import { useEffect } from 'react'
+import useHttpHook from '../store/thunk/http-hook'
+
 const LandingPage = () => {
+  const httpRquest = useHttpHook()
+
+  useEffect(() => {
+    httpRquest.request('GET', 'https://api.publicapis.org/entriess').then((res) => {
+      console.log('I will kill you',res)
+    })
+
+    return () => {
+      httpRquest.cancelRequest()
+    }
+  }, [])
+
   return (
     <>
       <div className=" w-full h-full items-center justify-end grid grid-cols-2 text-white">
