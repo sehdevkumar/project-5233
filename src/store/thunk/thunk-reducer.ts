@@ -1,11 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit'
 import { httpAsyncThunk } from './async-http-thunk'
+import { HttpInitialState } from '../../typings/app-comman-typings'
 
-export type HttpInitialState<T> = {
-  data: T
-  error: T
-  isLoading: boolean
-}
+
 
 export const initialState: HttpInitialState<unknown> = {
   data: undefined,

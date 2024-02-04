@@ -1,53 +1,45 @@
 import { useEffect } from 'react'
 import useHttpHook from '../store/thunk/http-hook'
+import TechStackPage from './tech-stack.page'
+import { globalDispatch } from '../store/store'
+import { FetchGihubSucessAction } from '../store/actions/github-actions'
+import { GitHubUser } from '../typings/api-typings'
+import { GitHubProfilePage } from './github-profile-page'
+import { IntroPage } from './intro-page'
 
 const LandingPage = () => {
   const httpRquest = useHttpHook()
+  const dipatch = globalDispatch()
 
   useEffect(() => {
-    httpRquest.request('GET', 'https://api.publicapis.org/entries').then((res) => {
-    })
+    httpRquest
+      ?.request('GET', 'https://api.github.com/users/sehdevkumar')
+      ?.then((res) => {
+        dipatch(FetchGihubSucessAction(res?.data as GitHubUser))
+      })
 
     return () => {
-      httpRquest.cancelRequest()
+      httpRquest?.cancelRequest()
     }
   }, [])
 
   return (
     <>
-      <div className=" w-full h-full items-center justify-end grid grid-cols-2 text-white">
-        <div className="text-[clamp(30px,1vw,35px)] flex text-center items-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-          neque corrupti excepturi, minima explicabo eius. Nihil, fugit earum
-          alias, provident est quas quia dolores fuga porro atque, eos esse
-          quos! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Tenetur earum alias natus voluptatum facere blanditiis aliquam
-          corporis? Vel illo quia, doloribus veritatis eum obcaecati voluptas
-          nulla asperiores rerum porro aspernatur.
-        </div>
-        <img
-          loading="lazy"
-          className="object-cover w-full h-full"
-          src="../../public/assets/sky-view1.jpg"
-        />
+    <div className="grid gap-y-4">
+      
+       <div className="w-full h-screen   text-white">
+        <IntroPage />
       </div>
 
-      <div className=" w-full h-full items-center justify-end grid grid-cols-2 text-white">
-        <img
-          loading="lazy"
-          className="object-cover w-full h-full"
-          src="../../public/assets/angular-react.jpg"
-        />
-        <div className="text-[clamp(30px,1vw,35px)] flex text-center items-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-          neque corrupti excepturi, minima explicabo eius. Nihil, fugit earum
-          alias, provident est quas quia dolores fuga porro atque, eos esse
-          quos! Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Tenetur earum alias natus voluptatum facere blanditiis aliquam
-          corporis? Vel illo quia, doloribus veritatis eum obcaecati voluptas
-          nulla asperiores rerum porro aspernatur.
-        </div>
+      <div className="w-full h-screen   text-white">
+        <TechStackPage />
       </div>
+
+      {/* <div className="w-full h-full   text-white">
+        <GitHubProfilePage/>
+      </div> */}
+
+    </div>
     </>
   )
 }

@@ -1,9 +1,10 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { thunkReducer } from './thunk/thunk-reducer'
+import { githubProfileReducer } from './reducers/git-hub-reducers';
 
 const store = configureStore({
-  reducer:{thunkReducer},
+  reducer:{thunkReducer,githubProfileReducer},
   devTools: true,
 })
  
